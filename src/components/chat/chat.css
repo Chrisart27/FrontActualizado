@@ -1,0 +1,141 @@
+/* Estilos CSS para la aplicación */
+.App {
+    position: fixed;
+    bottom: 20px; /* Distancia desde el borde inferior */
+    right: 20px; /* Distancia desde el borde derecho */
+    z-index: 999; /* Asegura que esté por encima de otros elementos */
+    background-color: transparent;
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+  
+  /* Estilos CSS para el contenedor del chat */
+  .chat-container {
+    max-height: 300px; /* Altura máxima del contenedor del chat */
+    overflow-y: auto; /* Agregar barra de desplazamiento vertical si el contenido excede la altura máxima */
+    width: 300px; /* Ancho máximo del contenedor del chat */
+    background-color: transparent; /* Color de fondo del contenedor del chat */
+    border: none; /* Borde del contenedor del chat */
+    border-radius: 10px; /* Borde redondeado del contenedor del chat */
+    padding: 10px; /* Espaciado interno del contenedor del chat */
+    
+    
+   
+  }
+  
+  /* Estilos CSS para el contenedor de cada mensaje */
+  .message {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px; 
+  }
+  
+  /* Estilos CSS para la burbuja de mensaje */
+  .message-bubble {
+    background-color: #f20c0c; /* Color de fondo de la burbuja de mensaje */
+    padding: 10px; /* Espaciado interno de la burbuja de mensaje */
+    border-radius: 10px; /* Borde redondeado de la burbuja de mensaje */
+    max-width: 100%; /* Ancho máximo de la burbuja de mensaje */
+    word-wrap: break-word;
+    overflow: hidden; /* Ocultar el desbordamiento horizontal */
+  }
+  
+ 
+  .message.user .message-bubble {
+    margin-left: auto; 
+    background-color: #9be070;
+  }
+  
+  
+  .message.model .message-bubble {
+    margin-right: auto; 
+  }
+  
+  
+  .chat-button {
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px; 
+    background-color: transparent;
+   width: 300px;
+    border: none;
+    width: 100px;
+    z-index: 999; 
+    border: none;
+    padding: 0%;
+  }
+  .chat-button:focus {
+    outline: none;
+  }
+
+  .chat-button:hover{
+    background-color: transparent;
+  }
+ 
+  
+  .input-form {
+    display: flex;
+    
+  
+  }
+  
+  
+  
+  .input-form input{
+    display: flex;
+    height: 40px;
+    width: 160px;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: -5px;
+    border: none;
+  
+  }
+  
+  .input-form button {
+    color: #f20c0c;
+    background-color: transparent;
+    width: 50px;
+  }
+
+  #envio{
+    display: flex;
+    margin-top: -4px;
+    margin-left: 5px;
+  }
+  
+  
+  
+  .input-form button:focus{
+    outline: none;
+  }
+  
+
+  .robot-icon {
+    font-size: 80px; 
+    color: #f20c0c;
+    position: relative; /* Ajusta el icono de forma relativa */
+    top: 20px; /* Ajusta la distancia del icono respecto al borde superior */
+    animation: moveRobot 1s infinite alternate; 
+    
+    
+}
+
+
+
+
+@keyframes moveRobot {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px); /* Ajusta la distancia y dirección de movimiento */
+    }
+}
+
+.sent-icons{
+    margin-top: 7px;
+    margin-left: 7px;
+    color: blue;
+}

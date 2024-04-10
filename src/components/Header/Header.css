@@ -1,0 +1,173 @@
+/* Header.css */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: transparent;
+  transition: background-color 0.4s ease;
+  z-index: 1000;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+}
+
+.header.scrolled {
+  background-color: black;
+}
+
+.hr1 {
+  width: 100%;
+  color: white;
+}
+
+.logo {
+  margin-left: 10%;
+}
+
+.logo h1 {
+  color: #e30a13;
+  font-size: 40px;
+  text-decoration: underline white  ;
+}
+a:-webkit-any-link {
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+nav {
+  font-size: 25px;
+  margin-right: 10%;
+  width: 30%;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.navbar a {
+  position: relative;
+  text-decoration: none;
+  color: white;
+  height: 100%;
+}
+
+.navbar a::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 0;
+  background-color: #e30a13;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+.navbar a.active::after {
+  width: 100%;
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+.rayasHorizontales img {
+  width: 36px;
+  height: 36px;
+  border: none;
+}
+
+.menuVertical {
+  position: absolute;
+  display: none;
+  list-style: none;
+  width: 200px;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 18px;
+}
+
+
+
+.rayasHorizontales:hover .menuVertical {
+  display: block;
+  border: none; /* Agrega esta línea para quitar el borde */
+
+}
+
+.menuVertical li:hover {
+  background-color: black;
+}
+
+.menuVertical li a {
+  display: block;
+  text-decoration: none;
+  padding: 7px;
+}
+
+.menuVertical img {
+  width: 25px;
+  height: auto;
+}
+
+.aggGrua {
+  width: 110px;
+  background: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  padding: 6px 10px;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  position: relative;
+  border-radius: 12px;
+}
+
+.aggGrua::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, red, blue, deeppink, blue, red, blue, deeppink, blue);
+  background-size: 800%;
+  border-radius: 10px;
+  filter: blur(8px);
+  animation: glowing 20s linear infinite;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.opciones {
+  margin-top: 5px;
+}

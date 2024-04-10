@@ -1,0 +1,57 @@
+.bodyt{
+  background-color: black;
+}
+
+.about-box {
+    padding: 110px;
+    background-color: black;
+    background-size: cover;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 150px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.tituloo {
+    font-size: 42px;
+    margin: 20px;
+}
+
+
+.about-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px;
+  
+}
+
+.about-text {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.text1 {
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+
+.about-images {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.about-images img {
+  max-width: 250px;
+  border-radius: 8px;
+}

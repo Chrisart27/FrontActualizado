@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Teko:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+.containerAgregar {
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 120vh;
+  margin: 0;
+  background-color: black;
+  color: black;
+}
+
+.containerInfoAgregar {
+  background-color: black;
+  border-radius: 15px;
+  height: 94vh;
+  margin-top: 90px;
+  text-align: center;
+  width: 700px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.containerInfoAgregar::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 700px;
+  height: 93vh;
+  background: linear-gradient(0deg, transparent, #e30a13,#e30a13);
+  transform-origin: bottom right;
+  animation: animate 5s linear infinite;
+  animation-delay: -3s;
+}
+
+.containerInfoAgregar::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 700px;
+  height: 93vh;
+  background: linear-gradient(0deg, transparent, #e30a13,#e30a13);
+  transform-origin: bottom right;
+  animation: animate 5s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.formAgregar {
+  position: absolute;
+  border-radius: 15px;
+  background: #999999;
+  z-index: 10;
+  width: 99%;
+  height: 93vh;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 15% 60% 25%;
+}
+
+.containerFormulario {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  border-radius: 20px;
+  width: 80%;
+  margin-left: 10%;
+  box-shadow: 0 0px 30px rgba(0, 0, 0, 0.7);
+  background-color: #ffffff;
+  border: solid 2px;
+}
+
+.campoFotoGrua {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 85%;
+  box-shadow: 0 0px 30px rgba(0, 0, 0, 0.7);
+  border-radius: 20px;
+  background-color: white;
+  border: solid 2px;
+}
+
+.publicarGrua {
+  grid-column: 1 / 3;
+  grid-row: 3 / 4;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tituloAgregar {
+  grid-column: 1/3;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  font-size: 30px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+}
+
+.labelAgregar {
+  color: black;
+  margin-top: 12px;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.customFileInput {
+  width: 70%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  background-color: #d41c1c;
+  color: black;
+}
+
+.customFileInput:hover {
+  background-color: #ee0d0d;
+}
+
+.campoFotoGrua {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imagenAgregar {
+  height: 100px;
+}
+
+.publicar {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  width: 30%;
+  font-weight: bold;
+  position: relative;
+}
+
+.publicar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg,red,blue,deeppink,blue,red,blue,deeppink,blue);
+  background-size: 800%;
+  border-radius: 10px;
+  filter: blur(8px);
+  animation: glowing 20s linear infinite;  
+}
+
+.publicar:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
+  transform: scale(1.05);
+}
+
+.inputAgregar {
+  width: 60%;
+  background-color: #999999;
+  border-radius: 4px;
+  border: 2px solid #101010;
+  color: black;
+  padding: 8px;
+}
+
+.errorMessage {
+  margin-top: 25px;
+  color: #d41c1c;
+  font-size: 26px;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  
+}
+
+.opcionesCiudades {
+  background-color: white;
+}
