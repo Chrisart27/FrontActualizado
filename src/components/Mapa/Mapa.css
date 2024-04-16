@@ -1,0 +1,51 @@
+.contenedor-mapa {
+  height: 400px;
+}
+
+.contenedor {
+  position: relative;
+  margin-top: 10px;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  border: black 2px solid;
+  overflow: hidden;
+  animation: borderEffect 5s infinite;
+}
+
+@keyframes borderEffect {
+  0% {
+    border-color: black;
+    box-shadow: 0 0 10px rgba(0, 0, 0);
+  }
+  25% {
+    border-color: red;
+    box-shadow: 0 0 10px rgba(218, 25, 25);
+  }
+  50% {
+    border-color: black;
+    box-shadow: 0 0 10px rgba(0, 0, 0);
+  }
+  75% {
+    border-color: red;
+    box-shadow: 0 0 10px rgba(218, 25, 25);
+  }
+  100% {
+    border-color: black;
+    box-shadow: 0 0 10px rgba(0, 0, 0);
+  }
+}
+
+.barra-lateral {
+  background-color: rgb(35 55 75 / 90%);
+  color: #fff;
+  padding: 6px 12px;
+  font-family: monospace;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  margin: 12px;
+  border-radius: 4px;
+}

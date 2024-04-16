@@ -6,6 +6,7 @@ import Footer from "../footer/Footer";
 import GruasP2 from "./GruasP2/GruasP2";
 import { SERVER_URL } from "../../constants/constants";
 import { useSelector } from "react-redux";
+import Mapa from "../Mapa/Mapa";
 
 const Gruas = () => {
   const [gruas, setGruas] = useState([]);
@@ -75,6 +76,7 @@ const Gruas = () => {
           onChange={(e) => setBusqueda(e.target.value)}
         />
       </div>
+      <Mapa gruas={gruas} />
       <div className="gruas-list">
         {gruas.map((grua) => (
           <div key={grua.idGrua} className="grua-item">
