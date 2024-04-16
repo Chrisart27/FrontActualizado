@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
-import './Contacto.css';
-import { SERVER_URL } from '../../constants/constants';
+import React, { useState } from "react";
+import "./Contacto.css";
+import { SERVER_URL } from "../../constants/constants";
+import ModalSimple from "../Modales/Simple/ModalSimple";
 
 const Contacto = () => {
+  const [open, setOpen] = useState(false);
+  const [error, setError] = useState(false);
+  const [title, setTitle] = useState("");
+  const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
   });
 
   const handleChange = (e) => {
@@ -19,34 +24,56 @@ const Contacto = () => {
 
     try {
       const response = await fetch(`${SERVER_URL}/sendEmail`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
       if (response.ok) {
-        alert('Mensaje enviado correctamente');
+        setTitle("Mensaje enviado");
+        setMessage("Mensaje enviado correctamente.");
+        setOpen(true);
+        setError(false);
         setFormData({
-          name: '',
-          email: '',
-          message: '',
+          name: "",
+          email: "",
+          message: "",
         });
       } else {
-        alert('Hubo un error al enviar el mensaje. Inténtalo de nuevo más tarde.');
+        setTitle("Error al enviar el mensaje");
+        setMessage(
+          "Hubo un error al enviar el mensaje. Inténtalo de nuevo más tarde."
+        );
+        setOpen(true);
+        setError(true);
       }
     } catch (error) {
-      console.error('Error al enviar el mensaje:', error);
-      alert('Hubo un error al enviar el mensaje. Inténtalo de nuevo más tarde.');
+      console.error("Error al enviar el mensaje:", error);
+      setTitle("Error al enviar el mensaje");
+      setMessage(
+        "Hubo un error al enviar el mensaje. Inténtalo de nuevo más tarde."
+      );
+      setOpen(true);
+      setError(true);
     }
   };
 
   return (
     <div className="contact-container">
-      <h2 className='tituloContacto'>Contactanos</h2>
+      <ModalSimple
+        open={open}
+        setOpen={setOpen}
+        error={error}
+        title={title}
+        message={message}
+      />
+      <h2 className="tituloContacto">Contactanos</h2>
       <form className="contact-form" onSubmit={handleSubmit}>
-        <label className='letra' htmlFor="name">Nombre:</label>
+        <label className="letra" htmlFor="name">
+          Nombre:
+        </label>
         <input
           type="text"
           id="name"
@@ -56,7 +83,9 @@ const Contacto = () => {
           required
         />
 
-        <label className='letra' htmlFor="email">Correo Electrónico:</label>
+        <label className="letra" htmlFor="email">
+          Correo Electrónico:
+        </label>
         <input
           type="email"
           id="email"
@@ -66,7 +95,9 @@ const Contacto = () => {
           required
         />
 
-        <label className='letra' htmlFor="message">Mensaje:</label>
+        <label className="letra" htmlFor="message">
+          Mensaje:
+        </label>
         <textarea
           id="message"
           name="message"
@@ -75,7 +106,9 @@ const Contacto = () => {
           required
         ></textarea>
 
-        <button className='buttoncontac' type="submit">Enviar Mensaje</button>
+        <button className="buttoncontac" type="submit">
+          Enviar Mensaje
+        </button>
       </form>
     </div>
   );

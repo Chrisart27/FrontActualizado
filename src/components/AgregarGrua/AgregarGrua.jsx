@@ -4,8 +4,12 @@ import "./AgregarGrua.css";
 import { useSelector } from "react-redux";
 import { UseUpload } from "../../firebase/hooks";
 import { SERVER_URL } from "../../constants/constants";
+import ModalSimple from "../Modales/Simple/ModalSimple";
 
 function AgregarGrua() {
+  const [open, setOpen] = useState(false);
+  const [title, setTitle] = useState("");
+  const [message, setMessage] = useState("");
 
   const user = useSelector((state) => state.client?.client);
 
@@ -23,8 +27,6 @@ function AgregarGrua() {
   const [publicacionExitosa, setPublicacionExitosa] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMensaje, setErrorMensaje] = useState("");
-
-
 
   const handleInputChange = (e) => {
     const { name, type, value } = e.target;
@@ -64,18 +66,18 @@ function AgregarGrua() {
     try {
       setIsLoading(true);
 
-      let picUrl = await UseUpload(gruaInfo.foto, "gruas")
+      let picUrl = await UseUpload(gruaInfo.foto, "gruas");
 
-      gruaInfo.foto = picUrl
+      gruaInfo.foto = picUrl;
       gruaInfo.clienteId = usuario.id;
-    }catch(err){
+    } catch (err) {
       console.error("Error al publicar la grúa:", err.message);
     }
 
     try {
       setIsLoading(true);
       console.log("Datos de la grúa a enviar:", gruaInfo);
-  
+
       const gruaData = {
         marca: gruaInfo.marca,
         modelo: gruaInfo.modelo,
@@ -85,10 +87,10 @@ function AgregarGrua() {
         foto: gruaInfo.foto,
         estadoGrua: false,
         idCliente: user.idCliente,
-        idAdmin: 1
+        idAdmin: 1,
       };
 
-      await axios.post( SERVER_URL + "/gruas", gruaData);
+      await axios.post(SERVER_URL + "/gruas", gruaData);
 
       setGruaInfo({
         marca: "",
@@ -99,14 +101,14 @@ function AgregarGrua() {
         foto: null,
         estadoGrua: false,
         idCliente: user.idCliente,
-        idAdmin: 1
+        idAdmin: 1,
       });
 
       setIsLoading(false);
       setPublicacionExitosa(true);
-
-
-      window.location.href = "/";
+      setMessage("La grúa se publicó exitosamente.");
+      setOpen(true);
+      setTitle("Publicación exitosa");
     } catch (error) {
       console.error("Error al publicar la grúa:", error.message);
     } finally {
@@ -116,6 +118,13 @@ function AgregarGrua() {
 
   return (
     <div className="containerAgregar">
+      <ModalSimple
+        open={open}
+        setOpen={setOpen}
+        title={title}
+        message={message}
+        buttonAction={() => (window.location.href = "/")}
+      />
       <div className="containerInfoAgregar">
         <form
           className="formAgregar"
@@ -191,7 +200,11 @@ function AgregarGrua() {
               >
                 <option value="">...</option>
                 {ciudades.map((ciudad, index) => (
-                  <option className="opcionesCiudades" key={index} value={ciudad}>
+                  <option
+                    className="opcionesCiudades"
+                    key={index}
+                    value={ciudad}
+                  >
                     {ciudad}
                   </option>
                 ))}
@@ -235,9 +248,7 @@ function AgregarGrua() {
           </div>
 
           <div className="publicarGrua">
-            {errorMensaje && (
-              <p className="errorMessage">{errorMensaje}</p>
-            )}
+            {errorMensaje && <p className="errorMessage">{errorMensaje}</p>}
             {publicacionExitosa && <p>La grúa se publicó exitosamente.</p>}
             <button className="publicar" disabled={isLoading}>
               {isLoading ? "Publicando..." : "Publicar"}
@@ -298,5 +309,5 @@ const ciudades = [
   "Quimbaya",
   "salento",
   "Alcalá",
-  "Filandia"
+  "Filandia",
 ];

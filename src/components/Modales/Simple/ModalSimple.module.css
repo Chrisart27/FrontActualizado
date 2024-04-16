@@ -1,0 +1,256 @@
+.contenedor {
+  position: relative;
+  z-index: 10;
+  font-family: Inter;
+}
+
+.fondo {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(107, 114, 128, 0.75);
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+.entrada {
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.entrada_desde {
+  opacity: 0;
+}
+
+.transicion_entrada_desde {
+  --transform-translate-y: 1rem;
+  opacity: 0;
+}
+
+.entrada_hacia {
+  opacity: 1;
+}
+
+.transicion_entrada_hacia {
+  --transform-translate-y: 0;
+  opacity: 1;
+}
+
+.salida {
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
+.salida_desde {
+  opacity: 1;
+}
+
+.transicion_salida_desde {
+  --transform-translate-y: 0;
+  opacity: 1;
+}
+
+.salida_hacia {
+  opacity: 0;
+}
+
+.transicion_salida_hacia {
+  --transform-translate-y: 1rem;
+  opacity: 0;
+}
+
+.contenedor_modal {
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  width: 100vw;
+}
+
+.modal {
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  align-items: flex-end;
+  min-height: 100%;
+  text-align: center;
+}
+
+.panel {
+  overflow: hidden;
+  position: relative;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 1.25rem;
+  border-radius: 0.5rem;
+  text-align: left;
+  background-color: #ffffff;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.contenedor_icono {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9999px;
+  width: 3rem;
+  height: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contenedor_icono_error {
+  background-color: #fee2e2;
+}
+
+.contenedor_icono_exito {
+  background-color: #d1fae5;
+}
+
+.contenedor_icono_advertencia {
+  background-color: #fef3c7;
+}
+
+.icono {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.icono_advertencia {
+  color: #f59e0b;
+}
+
+.icono_exito {
+  color: #059669;
+}
+
+.icono_error {
+  color: #dc2626;
+}
+
+.contenedor_titulo {
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.titulo {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  color: #111827;
+}
+
+.contenedor_texto {
+  margin-top: 0.5rem;
+}
+
+.texto {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #6b7280;
+}
+
+.contenedor_boton {
+  margin-top: 1.25rem;
+}
+
+.dos_botones {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.boton {
+  display: inline-flex;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  justify-content: center;
+  border-radius: 0.375rem;
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.boton_cancelar {
+  background-color: #6b7280;
+}
+
+.boton_exito {
+  background-color: #059669;
+}
+
+.boton_error {
+  background-color: #dc2626;
+}
+
+.boton_exito:hover {
+  background-color: #10b981;
+}
+
+.boton_error:hover {
+  background-color: #ef4444;
+}
+
+.boton_cancelar:hover {
+  background-color: #374151;
+}
+
+@media (min-width: 640px) {
+  .modal {
+    padding: 0;
+    align-items: center;
+  }
+
+  .transicion_entrada_desde {
+    --transform-scale-x: 0.95;
+    --transform-scale-y: 0.95;
+    --transform-translate-y: 0;
+  }
+
+  .transicion_entrada_hacia {
+    --transform-scale-x: 1;
+    --transform-scale-y: 1;
+  }
+
+  .transicion_salida_desde {
+    --transform-scale-x: 1;
+    --transform-scale-y: 1;
+  }
+
+  .transicion_salida_hacia {
+    --transform-scale-x: 0.95;
+    --transform-scale-y: 0.95;
+  }
+
+  .panel {
+    padding: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 24rem;
+  }
+
+  .contenedor_titulo {
+    margin-top: 1.25rem;
+  }
+
+  .contenedor_boton {
+    margin-top: 1.5rem;
+  }
+}
