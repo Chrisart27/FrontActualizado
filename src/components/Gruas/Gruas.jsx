@@ -12,8 +12,7 @@ const Gruas = () => {
   const [gruas, setGruas] = useState([]);
   const [busqueda, setBusqueda] = useState("");
   const usuariosEnLinea = useSelector((state) => state.client?.usersOnline);
-
-  console.log(usuariosEnLinea);
+  const [ubicacionUsuario, setUbicacionUsuario] = useState([]);
 
   useEffect(() => {
     axios
@@ -25,6 +24,15 @@ const Gruas = () => {
       .catch((error) => {
         console.error("Error al obtener grúas desde el backend:", error);
       });
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setUbicacionUsuario([
+          position.coords.longitude,
+          position.coords.latitude,
+        ]);
+      });
+    }
   }, []);
 
   // const filtrarGruas = () => {
@@ -76,7 +84,9 @@ const Gruas = () => {
           onChange={(e) => setBusqueda(e.target.value)}
         />
       </div>
-      <Mapa gruas={gruas} />
+      {gruas.length && (
+        <Mapa objetos={gruas} ubicacionUsuario={ubicacionUsuario} />
+      )}
       <div className="gruas-list">
         {gruas.map((grua) => (
           <div key={grua.idGrua} className="grua-item">

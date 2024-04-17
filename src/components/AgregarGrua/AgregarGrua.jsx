@@ -5,11 +5,13 @@ import { useSelector } from "react-redux";
 import { UseUpload } from "../../firebase/hooks";
 import { SERVER_URL } from "../../constants/constants";
 import ModalSimple from "../Modales/Simple/ModalSimple";
+import Mapa from "../Mapa/Mapa";
 
 function AgregarGrua() {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
+  const [gruaUbicacion, setGruaUbicacion] = useState(null);
 
   const user = useSelector((state) => state.client?.client);
 
@@ -27,6 +29,21 @@ function AgregarGrua() {
   const [publicacionExitosa, setPublicacionExitosa] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMensaje, setErrorMensaje] = useState("");
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setGruaUbicacion({
+          longitud: position.coords.longitude,
+          latitud: position.coords.latitude,
+        });
+      });
+    }
+  }, []);
+
+  const handleGruaUbicacion = (ubicacion) => {
+    setGruaUbicacion({ longitud: ubicacion[0], latitud: ubicacion[1] });
+  };
 
   const handleInputChange = (e) => {
     const { name, type, value } = e.target;
@@ -88,6 +105,8 @@ function AgregarGrua() {
         estadoGrua: false,
         idCliente: user.idCliente,
         idAdmin: 1,
+        latitud: gruaUbicacion.latitud ? gruaUbicacion.latitud : -75.676956,
+        longitud: gruaUbicacion.longitud ? gruaUbicacion.longitud : 4.535173,
       };
 
       await axios.post(SERVER_URL + "/gruas", gruaData);
@@ -103,6 +122,14 @@ function AgregarGrua() {
         idCliente: user.idCliente,
         idAdmin: 1,
       });
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          setGruaUbicacion({
+            longitud: position.coords.longitude,
+            latitud: position.coords.latitude,
+          });
+        });
+      }
 
       setIsLoading(false);
       setPublicacionExitosa(true);
@@ -133,6 +160,15 @@ function AgregarGrua() {
           method="post"
         >
           <h2 className="tituloAgregar">Publicar nueva grúa</h2>
+
+          {gruaUbicacion && (
+            <Mapa
+              className="containerMapa"
+              obtenerUbicacion={handleGruaUbicacion}
+              objetos={[gruaUbicacion]}
+              arrastable={true}
+            />
+          )}
 
           <div className="containerFormulario">
             <div>

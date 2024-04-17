@@ -1,5 +1,6 @@
 .contenedor-mapa {
   height: 400px;
+  width: 100%;
 }
 
 .contenedor {
@@ -48,4 +49,10 @@
   left: 0;
   margin: 12px;
   border-radius: 4px;
+}
+
+.iconoUsuario {
+  width: 25px;
+  height: 25px;
+  color: royalblue;
 }
