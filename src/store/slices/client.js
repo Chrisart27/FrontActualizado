@@ -5,7 +5,6 @@ const clientSlice = createSlice({
   initialState: {
     client: null,
     usersOnline: [],
-    idCliente: null,
   },
   reducers: {
     login: (state, action) => {
@@ -15,11 +14,8 @@ const clientSlice = createSlice({
     setOnlineUsers: (state, action) => {
       state.usersOnline = action.payload;
     },
-    setIdCliente: (state, action) => {
-      state.idCliente = action.payload;
-    },
   },
 });
 
 export default clientSlice.reducer;
-export const { login, setOnlineUsers, setIdCliente } = clientSlice.actions;
+export const { login, setOnlineUsers } = clientSlice.actions;

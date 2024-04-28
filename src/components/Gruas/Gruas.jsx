@@ -103,6 +103,26 @@ const Gruas = () => {
             <p>Modelo: {grua.modelo}</p>
             <p>Capacidad: {grua.capacidad} kg</p>
             <p>Ubicacion: {grua.ubicacion}</p>
+            <div className="grua-status">
+              <div className="grua-status-icon-container">
+                <div
+                  className={`grua-status-icon ${
+                    usuariosEnLinea?.some(
+                      (usuario) => usuario.idCliente === grua.idCliente
+                    )
+                      ? "grua-status-on"
+                      : "grua-status-off"
+                  }`}
+                />
+              </div>
+              <p className="grua-status-text">
+                {usuariosEnLinea?.some(
+                  (usuario) => usuario.idCliente === grua.idCliente
+                )
+                  ? "En Línea"
+                  : "Desconectado"}
+              </p>
+            </div>
             <button
               className="contactar-btn"
               onClick={() => openWhatsAppChat(grua)}

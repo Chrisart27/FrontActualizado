@@ -1,25 +1,19 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
 import { socket } from "../../constants/utils";
-import { setIdCliente } from "../../store/slices/client";
 
 export default function Header() {
   const usuarioAutenticado = useSelector(
     (state) => state.client?.client !== null
   );
   const idClienteAutenticado = useSelector((state) => {
-    console.log(state);
-    return state.client.idCliente;
+    return state.client?.client?.idCliente;
   });
-  const dispatcher = useDispatch();
-
-  console.log("idCliente autenticado:", idClienteAutenticado);
 
   const handleLogout = () => {
     socket.emit("usuario-desconectado", idClienteAutenticado);
-    dispatcher(setIdCliente(null));
     localStorage.removeItem("token");
     window.location.href = "/";
   };

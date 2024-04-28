@@ -20,6 +20,7 @@ const App = () => {
 
   useEffect(() => {
     socket.on("obtener-usuarios", function (usuariosEnLinea) {
+      console.log("Usuarios en línea:", JSON.parse(usuariosEnLinea));
       dispatcher(setOnlineUsers(JSON.parse(usuariosEnLinea)));
     });
   }, []);

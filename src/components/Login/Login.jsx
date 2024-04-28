@@ -4,7 +4,6 @@ import { socket } from "../../constants/utils";
 import "./Login.css";
 import ModalSimple from "../Modales/Simple/ModalSimple";
 import { useDispatch } from "react-redux";
-import { setIdCliente } from "../../store/slices/client";
 
 export default function Login() {
   const [open, setOpen] = useState(false);
@@ -26,7 +25,6 @@ export default function Login() {
     if (response.ok) {
       const data = await response.json();
       socket.emit("nuevo-usuario-agregado", data.idCliente);
-      dispatcher(setIdCliente(data.idCliente));
       localStorage.setItem("token", data.token);
       window.location.href = "/";
     } else {
