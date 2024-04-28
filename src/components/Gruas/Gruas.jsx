@@ -85,7 +85,11 @@ const Gruas = () => {
         />
       </div>
       {gruas.length && (
-        <Mapa objetos={gruas} ubicacionUsuario={ubicacionUsuario} />
+        <Mapa
+          objetos={gruas}
+          ubicacionUsuario={ubicacionUsuario}
+          usuariosEnLinea={usuariosEnLinea}
+        />
       )}
       <div className="gruas-list">
         {gruas.map((grua) => (

@@ -252,7 +252,7 @@ function AgregarGrua() {
             {gruaInfo.foto ? (
               <img
                 className="imagenAgregar"
-                src={URL.createObjectURL(gruaInfo.foto)}
+                src={gruaInfo.foto}
                 alt="Grua"
                 style={{ maxWidth: "400px", maxHeight: "400px" }}
               />

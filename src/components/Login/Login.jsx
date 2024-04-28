@@ -3,12 +3,15 @@ import { SERVER_URL } from "../../constants/constants";
 import { socket } from "../../constants/utils";
 import "./Login.css";
 import ModalSimple from "../Modales/Simple/ModalSimple";
+import { useDispatch } from "react-redux";
+import { setIdCliente } from "../../store/slices/client";
 
 export default function Login() {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
+  const dispatcher = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +26,7 @@ export default function Login() {
     if (response.ok) {
       const data = await response.json();
       socket.emit("nuevo-usuario-agregado", data.idCliente);
+      dispatcher(setIdCliente(data.idCliente));
       localStorage.setItem("token", data.token);
       window.location.href = "/";
     } else {

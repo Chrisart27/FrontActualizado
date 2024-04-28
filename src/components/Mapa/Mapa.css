@@ -56,3 +56,46 @@
   height: 25px;
   color: royalblue;
 }
+
+.popup {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  z-index: 1;
+}
+
+.popup img {
+  width: auto;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.popup h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.popup p {
+  margin: 0;
+  padding: 0;
+}
+
+.popup p:last-child {
+  font-weight: bold;
+  font-size: 10px;
+  color: royalblue;
+}
+
+.popup .online {
+  color: green;
+}
+
+.popup .offline {
+  color: red;
+}
