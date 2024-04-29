@@ -38,13 +38,29 @@ export function validateFields(nombre, email, telefono, contrasenia) {
 }
 
 export async function manejarClick(idCliente, idGrua) {
-  const response = await fetch(`${SERVER_URL}/agregarClick`, {
+  const response = await fetch(`${SERVER_URL}/clicks/agregarClick`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ idCliente, idGrua }),
   });
 
   return response.ok;
+}
+
+export async function validarClicks(idCliente) {
+  const response = await fetch(
+    `${SERVER_URL}/clicks/validarClicks?idCliente=${idCliente}`,
+    {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    }
+  );
+
+  if (response.ok) {
+    return response.json();
+  }
+
+  return null;
 }
 
 export const socket = io(

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
-import { socket } from "../../constants/utils";
+import { socket, validarClicks } from "../../constants/utils";
 
 export default function Header() {
   const usuarioAutenticado = useSelector(
@@ -11,6 +11,12 @@ export default function Header() {
   const idClienteAutenticado = useSelector((state) => {
     return state.client?.client?.idCliente;
   });
+
+  useEffect(() => {
+    if (usuarioAutenticado) {
+      validarClicks(idClienteAutenticado);
+    }
+  }, [idClienteAutenticado]);
 
   const handleLogout = () => {
     socket.emit("usuario-desconectado", idClienteAutenticado);
