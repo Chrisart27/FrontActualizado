@@ -1,4 +1,4 @@
-import { SERVER_DOMAIN, SERVER_PORT } from "./constants";
+import { SERVER_DOMAIN, SERVER_PORT, SERVER_URL } from "./constants";
 
 export function validateFields(nombre, email, telefono, contrasenia) {
   if (!nombre || !email || !telefono || !contrasenia) {
@@ -35,6 +35,16 @@ export function validateFields(nombre, email, telefono, contrasenia) {
     telefono,
     contrasenia,
   };
+}
+
+export async function manejarClick(idCliente, idGrua) {
+  const response = await fetch(`${SERVER_URL}/agregarClick`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ idCliente, idGrua }),
+  });
+
+  return response.ok;
 }
 
 export const socket = io(

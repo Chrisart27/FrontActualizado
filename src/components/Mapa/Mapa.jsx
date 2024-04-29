@@ -2,6 +2,7 @@ import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loade
 import React, { useEffect, useRef, useState } from "react";
 import "./Mapa.css";
 import { useSelector } from "react-redux";
+import { manejarClick } from "../../constants/utils";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZm9yZmVzIiwiYSI6ImNsdXU1aDlpdzA2a2Qya3NmNGpiejFkaGcifQ.art5lpkho5W9uIW9XNXI2Q";
@@ -60,8 +61,6 @@ export default function Mapa({
     });
   }, []);
 
-  console.log("usuariosEnLinea", usuariosEnLinea);
-
   useEffect(() => {
     if (mapa.current && objetos.length && !marcadores.length) {
       objetos.forEach((objeto) => {
@@ -95,6 +94,24 @@ export default function Mapa({
             <h3>${objeto.marca}</h3>
             <p>Modelo: ${objeto.modelo}</p>
             <p>Capacidad: ${objeto.capacidad}</p>
+            <a
+              href="https://wa.me/${objeto.whatsapp}?text=${encodeURIComponent(
+            "Hola, estoy interesado en tus servicios de grúa."
+          )}"
+              target="_blank"
+              class="contactar-btn"
+              id="whatsapp-btn"
+              idCliente="${objeto.idCliente}"
+              idGrua="${objeto.idGrua}"
+            >
+              WhatsApp
+              <img
+                class="logoWhatsapp"
+                src="https://cdn-icons-png.flaticon.com/128/15047/15047389.png"
+                alt=""
+              />
+            </a>
+            </div>
           </div>`)
         );
       });
@@ -109,6 +126,28 @@ export default function Mapa({
       });
     }
   }, [marcadores, mapa.current]);
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      const whatsappButton = document.getElementById("whatsapp-btn");
+      if (whatsappButton && !whatsappButton.hasClickListener) {
+        whatsappButton.addEventListener("click", () => {
+          manejarClick(
+            whatsappButton.getAttribute("idCliente"),
+            whatsappButton.getAttribute("idGrua")
+          );
+        });
+        whatsappButton.hasClickListener = true;
+      }
+    });
+
+    observer.observe(document, { childList: true, subtree: true });
+
+    // Cleanup function to disconnect the MutationObserver when the component unmounts
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     if (mapa.current && ubicacionUsuario.length) {
@@ -146,7 +185,26 @@ export default function Mapa({
           ubicacionUsuario[0]
         ).toFixed(2)}
         km</p>
-            </div>`)
+        <a
+          href="https://wa.me/${
+            marcador.objeto.whatsapp
+          }?text=${encodeURIComponent(
+            "Hola, estoy interesado en tus servicios de grúa."
+          )}"
+          target="_blank"
+          class="contactar-btn"
+          id="whatsapp-btn"
+          idCliente="${marcador.objeto.idCliente}"
+          idGrua="${marcador.objeto.idGrua}"
+        >
+          WhatsApp
+          <img
+            class="logoWhatsapp"
+            src="https://cdn-icons-png.flaticon.com/128/15047/15047389.png"
+            alt=""
+          />
+        </a>
+        </div>`)
         );
       });
     }

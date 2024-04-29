@@ -7,6 +7,7 @@ import GruasP2 from "./GruasP2/GruasP2";
 import { SERVER_URL } from "../../constants/constants";
 import { useSelector } from "react-redux";
 import Mapa from "../Mapa/Mapa";
+import { manejarClick } from "../../constants/utils";
 
 const Gruas = () => {
   const [gruas, setGruas] = useState([]);
@@ -56,6 +57,7 @@ const Gruas = () => {
   // };
 
   const openWhatsAppChat = (grua) => {
+    manejarClick(grua.idCliente, grua.idGrua);
     // Comprobar si la propiedad 'whatsapp' existe en el objeto 'grua'
     if (grua && grua.whatsapp) {
       const whatsappNumber = grua.whatsapp;
@@ -123,18 +125,20 @@ const Gruas = () => {
                   : "Desconectado"}
               </p>
             </div>
-            <button
-              className="contactar-btn"
-              onClick={() => openWhatsAppChat(grua)}
-            >
-              {" "}
-              WhatsApp{" "}
-              <img
-                className="logoWhatsapp"
-                src="https://cdn-icons-png.flaticon.com/128/15047/15047389.png"
-                alt=""
-              />{" "}
-            </button>
+            <div className="contactar-btn-contenedor">
+              <button
+                className="contactar-btn"
+                onClick={() => openWhatsAppChat(grua)}
+              >
+                {" "}
+                WhatsApp{" "}
+                <img
+                  className="logoWhatsapp"
+                  src="https://cdn-icons-png.flaticon.com/128/15047/15047389.png"
+                  alt=""
+                />{" "}
+              </button>
+            </div>
           </div>
         ))}
       </div>

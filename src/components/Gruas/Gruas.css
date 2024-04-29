@@ -12,7 +12,10 @@
   position: relative;
   padding: 15px;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  justify-content: center;
   transition: background-color 0.3s ease;
   cursor: pointer;
   color: white;
@@ -129,6 +132,11 @@
   }
 }
 
+.contactar-btn-contenedor {
+  display: flex;
+  justify-content: center;
+}
+
 .contactar-btn {
   background-color: #1bd741;
   color: black;
@@ -140,7 +148,6 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 60%;
-  margin-left: 19%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;

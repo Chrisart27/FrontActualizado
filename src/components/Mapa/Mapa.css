@@ -99,3 +99,23 @@
 .popup .offline {
   color: red;
 }
+
+.contactar-btn {
+  background-color: #1bd741;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.popup img.logoWhatsapp {
+  width: 12%;
+  height: auto;
+}
